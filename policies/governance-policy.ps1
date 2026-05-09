@@ -169,7 +169,8 @@ function Deploy-ModifyPolicy {
     $definition = New-AzPolicyDefinition `
         -Name "$displayName-modify" `
         -DisplayName $displayName `
-        -Policy $policyRule
+        -Policy $policyRule `
+        -Mode All
 
     # Build scope path based on assignment level
     $subId = (Get-AzContext).Subscription.Id
@@ -195,8 +196,10 @@ function Deploy-ModifyPolicy {
     Write-Host "Assigning policy to $assignmentLevel - $levelName..."
     New-AzPolicyAssignment `
         -Name "$displayName-assignment" `
+        -DisplayName $displayName `
         -PolicyDefinition $definition `
-        -Scope $scope
+        -Scope $scope `
+        -Description "Deployed via governance-policy.ps1"
     Write-Host ""
     Write-Host "Modify policy deployed successfully."
     Write-Host ""
