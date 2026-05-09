@@ -125,8 +125,10 @@ esac
     # Stage 2 - Assign
     az policy assignment create \
     --name "$display_name-assignment" \
+    --display-name "$display_name" \
     --policy "$display_name-deny" \
-    --scope "$scope"
+    --scope "$scope" \
+    --description "Deployed via governance-policy.sh"
 
     echo ""
     echo "Deny policy deployed successfully."
@@ -191,8 +193,10 @@ esac
     # Stage 2 - Assign
     az policy assignment create \
     --name "$display_name-assignment" \
+    --display-name "$display_name" \
     --policy "$display_name-modify" \
-    --scope "$scope"
+    --scope "$scope" \
+    --description "Deployed via governance-policy.sh"
 
     echo ""
     echo "Modify policy deployed successfully."
@@ -296,20 +300,20 @@ done # End of while loop
 # Step 4: Deploy
 # =========================================
 
-if ($policy_type -eq "Deny") {
-    Deploy-DenyPolicy `
-        -assignmentLevel $assignment_level `
-        -levelName $level_name `
-        -tagName $tag_name `
-        -displayName $display_name
-}
+if [ "$policy_type" = "Deny" ]; then
+    deploy_deny_policy \
+        "$assignment_level" \
+        "$level_name" \
+        "$tag_name" \
+        "$display_name"
+fi
 
-if ($policy_type -eq "Modify") {
-    Deploy-ModifyPolicy `
-        -assignmentLevel $assignment_level `
-        -levelName $level_name `
-        -tagName $tag_name `
-        -tagValue $tag_value `
-        -displayName $display_name
-}
+if [ "$policy_type" = "Modify" ]; then
+    deploy_modify_policy \
+        "$assignment_level" \
+        "$level_name" \
+        "$tag_name" \
+        "$tag_value" \
+        "$display_name"
+fi
 
