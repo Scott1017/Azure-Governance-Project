@@ -21,6 +21,7 @@ across the organisation.
 
 ## Components
 
+```
 azure-governance-project/
 ├── policies/
 │   ├── governance-policy.ps1   # PowerShell deployment script
@@ -28,6 +29,7 @@ azure-governance-project/
 └── identity/
 ├── dynamic-group.ps1       # Coming soon
 └── dynamic-group.sh        # Coming soon
+```
 
 ---
 
