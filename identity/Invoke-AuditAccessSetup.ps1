@@ -394,11 +394,12 @@ if ($p2Available -ne 'Y') {
             -Name         "AuditExpiryReceiver" `
             -EmailAddress $notificationEmail
 
-        $actionGroup = Set-AzActionGroup `
-            -ResourceGroupName $resourceGroup `
-            -Name              "Audit-Expiry-AG-$department" `
-            -ShortName         "AuditExp" `
-            -Receiver          $emailReceiver
+        Set-AzActionGroup `
+        -ResourceGroupName $resourceGroup `
+        -Name              "Audit-Expiry-AG-$department" `
+        -ShortName         "AuditExp" `
+        -Receiver          $emailReceiver `
+        -ErrorAction       Stop | Out-Null
 
         Write-Host " Action Group created — alerts will be sent to : $notificationEmail" -ForegroundColor Green
 
