@@ -28,9 +28,9 @@ azure-governance-project/
 │   ├── governance-policy.sh        # CLI (Bash) deployment script
 │   └── README.md                   # Policy deployment guide
 └── identity/
-├── Invoke-AuditAccessSetup.ps1 # PowerShell deployment script
-├── Invoke-AuditAccessSetup.sh  # CLI (Bash) deployment script
-└── README.md                   # Audit access setup guide
+    ├── Invoke-AuditAccessSetup.ps1 # PowerShell deployment script
+    ├── Invoke-AuditAccessSetup.sh  # CLI (Bash) deployment script
+    └── README.md                   # Audit access setup guide
 
 ```
 ---
